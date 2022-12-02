@@ -7,9 +7,9 @@ import (
 )
 
 type Combo struct {
-	Loss        string
-	Draw       string
-	Win       string
+	Loss string
+	Draw string
+	Win  string
 }
 
 var (
