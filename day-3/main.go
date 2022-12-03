@@ -7,17 +7,11 @@ import (
 	"strings"
 )
 
+const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 func main() {
 	dat, _ := os.ReadFile("./input.txt")
 	input := string(dat)
-
-	alpha := ""
-	for i := 'a'; i <= 'z'; i++ {
-		alpha += string(i)
-	}
-	for i := 'A'; i <= 'Z'; i++ {
-		alpha += string(i)
-	}
 
 	split := strings.Split(strings.ReplaceAll(input, "\r\n", "\n"), "\n")
 
