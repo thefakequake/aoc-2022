@@ -26,7 +26,6 @@ func main() {
 				partOne += strings.Index(alpha, char) + 1
 			}
 		}
-
 	}
 
 	partTwo := 0
