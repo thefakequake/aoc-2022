@@ -12,23 +12,26 @@ func main() {
 	inp := string(dat)
 
 	split := strings.Split(strings.ReplaceAll(inp, "\r\n", "\n"), "\n")
+	
+	var startStacks [9][]string
 	var commands []string
-	var partOne, partTwo [9][]string
 
-	for part, stacks := range [][9][]string{partOne, partTwo} {
-		for index, line := range split {
-			if split[index+1] == "" {
-				commands = split[index+2:]
-				break
-			}
+	for index, line := range split {
+		if split[index+1] == "" {
+			commands = split[index+2:]
+			break
+		}
 
-			for i, j := 0, 1; j < len(line); i, j = i+1, j+4 {
-				char := string(line[j])
-				if strings.TrimSpace(char) != "" {
-					stacks[i] = append([]string{char}, stacks[i]...)
-				}
+		for i, j := 0, 1; j < len(line); i, j = i+1, j+4 {
+			char := string(line[j])
+			if strings.TrimSpace(char) != "" {
+				startStacks[i] = append([]string{char}, startStacks[i]...)
 			}
 		}
+	}
+
+	for part := 0; part < 2; part++ {
+		stacks := startStacks
 
 		for _, cmd := range commands {
 			parts := strings.Split(cmd, " ")
@@ -39,7 +42,7 @@ func main() {
 			to--
 
 			fromStack := stacks[from]
-			sliceIndex := len(fromStack)-amount
+			sliceIndex := len(fromStack) - amount
 			crates := fromStack[sliceIndex:]
 			stacks[from] = fromStack[:sliceIndex]
 
